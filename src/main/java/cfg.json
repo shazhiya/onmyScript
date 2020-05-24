@@ -1,0 +1,40 @@
+{
+  "status": [
+    {
+      "start":{
+
+      }
+    },{
+      "end": {
+
+      }
+    }
+  ],
+  "role": {
+    "start":{
+      "status": "start",
+      "operations": [],
+      "wait": 10,
+      "finish": "",
+      "exception": ""
+    }
+  },
+  "default": {
+    "timeOut": 3000,
+    "random": 100,
+    "wait": 100,
+    "inspectTime": 100
+  },
+  "exceptions": [
+
+  ],
+  "search": [
+    {
+      "name":{
+
+      }
+    },{
+
+    }
+  ]
+}
