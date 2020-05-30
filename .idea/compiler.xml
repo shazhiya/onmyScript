@@ -20,7 +20,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="win3Pro" target="13" />
+      <module name="win3Pro" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
