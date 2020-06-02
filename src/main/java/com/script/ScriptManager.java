@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.script.behavior.Action;
 import com.script.behavior.ActionFactory;
+import com.script.scene.Scene;
+import com.script.scene.SceneFactory;
 import com.script.status.Status;
 import com.script.status.StatusFactory;
 
@@ -14,8 +16,11 @@ public class ScriptManager {
     private JSONObject config;
     private Map<String, Status> statusMap = new HashMap<>();
     private Map<String, Action> actionMap = new HashMap<>();
-    public ScriptManager(JSONObject config) {
+    private Map<String, Scene> sceneMap = new HashMap<>();
+    private GamePanel gamePanel = null;
+    public ScriptManager(JSONObject config, GamePanel gamePanel) {
         this.config = config;
+        this.gamePanel = gamePanel;
         init();
     }
 
@@ -32,10 +37,27 @@ public class ScriptManager {
             actionMap.put(object.getString("name"), ActionFactory.BuildAction(object));
         }
 
+        JSONArray sceneList = config.getJSONArray("scenes");
+        for (int i = 0; i< sceneList.size();i++){
+            JSONObject object = actionList.getJSONObject(i);
+            sceneMap.put(object.getString("name"), SceneFactory.SceneBuilder(object,statusMap,actionMap));
+        }
+
+
     }
 
     public void start(){
-
+        new Thread(() -> {
+            while (true){
+                for (String scene: sceneMap.keySet()){
+                    Scene sce = sceneMap.get(scene);
+                    while (sce!=null){
+                        sce.show(gamePanel);
+                        sce = sce.gotoNextScene(sceneMap,gamePanel);
+                    }
+                }
+            }
+        }).start();
     }
 
 }

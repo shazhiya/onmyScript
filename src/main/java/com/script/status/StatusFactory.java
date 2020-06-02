@@ -3,6 +3,7 @@ package com.script.status;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.script.Pixel;
+import com.script.status.imply.SimpleStatus;
 
 import java.awt.*;
 import java.util.ArrayList;

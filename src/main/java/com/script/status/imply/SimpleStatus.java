@@ -1,7 +1,8 @@
-package com.script.status;
+package com.script.status.imply;
 
 import com.script.GamePanel;
 import com.script.Pixel;
+import com.script.status.Status;
 
 import java.util.List;
 
